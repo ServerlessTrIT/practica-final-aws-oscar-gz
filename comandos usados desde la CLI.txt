@@ -1,0 +1,26 @@
+******************
+** Crear bucket **
+******************
+- Comando para crear bucket "serverlessoscargz":
+'aws s3api create-bucket --bucket serverlessoscargz --region eu-central-1 --create-bucket-configuration LocationConstraint=eu-central-1'
+
+- URL del bucket "serverlessoscargz": http://serverlessoscargz.s3.amazonaws.com/
+
+- Subir ficheros de prueba index.html y error.html:
+'aws s3 cp index.html s3://serverlessoscargz/index.html'
+'aws s3 cp index.html s3://serverlessoscargz/app.js'
+'aws s3 cp error.html s3://serverlessoscargz/error.html'
+
+- Añadir politica para que el acceso al bucket sea público (fichero policy.json):
+'aws s3api put-bucket-policy --bucket serverlessoscargz --policy file://policy.json'
+
+- Añadir el fichero configuration.json donde vamos a indicar que el bucket es un "Alojamiento de sitios web estáticos":
+'aws s3api put-bucket-website --bucket serverlessoscargz --website-configuration file://configuration.json'
+
+- Punto de enlace: http://serverlessoscargz.s3-website.eu-central-1.amazonaws.com
+
+URL con SSL (CloudFront) => https://d2m8pr2z0t7zl9.cloudfront.net/
+
+URL API => https://ii04dyu67k.execute-api.eu-central-1.amazonaws.com/dev/
+
+X-API-KEY => 7e7RBCFbof3ayxrTEI6Wd59Ev1uTuBVTabhgDjlJ
